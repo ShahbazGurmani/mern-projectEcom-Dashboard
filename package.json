@@ -1,0 +1,24 @@
+{
+  "name": "e-dashboard",
+  "version": "1.0.0",
+  "description": "e commerce dashboard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ShahbazGurmani/mern-projectEcom-Dashboard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShahbazGurmani/mern-projectEcom-Dashboard/issues"
+  },
+  "homepage": "https://github.com/ShahbazGurmani/mern-projectEcom-Dashboard#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.4.4",
+    "nodemon": "^3.0.1"
+  }
+}
