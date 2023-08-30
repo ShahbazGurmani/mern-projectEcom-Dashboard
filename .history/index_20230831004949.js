@@ -63,7 +63,7 @@ app.post('/add-product',veriftToken,async(req,resp)=>{
 
 
 //getProduct data api
-app.get('/product-data',async(req,resp)=>{
+app.get('/product-data',veriftToken,async(req,resp)=>{
     let data = await Products.find();
     if(data.length>0)
     {
@@ -77,7 +77,7 @@ app.get('/product-data',async(req,resp)=>{
 })
 
 //delete api:
-app.delete('/delete-product/:id',async(req,resp)=>{
+app.delete('/delete-product/:id',veriftToken,async(req,resp)=>{
    
     let result = await Products.deleteOne({_id:req.params.id});
     resp.send(result);
@@ -85,7 +85,7 @@ app.delete('/delete-product/:id',async(req,resp)=>{
 })
 
 //updateapi
-app.get('/product/:id',async(req,resp)=>{
+app.get('/product/:id',veriftToken,async(req,resp)=>{
   let result = await Products.findOne({_id:req.params.id})
   if(result)
   {
@@ -96,7 +96,7 @@ app.get('/product/:id',async(req,resp)=>{
   }
 })
 
-app.put('/product-update/:id',async(req,resp)=>{
+app.put('/product-update/:id',veriftToken,async(req,resp)=>{
   let result = await Products.updateOne(
     {_id:req.params.id},
     {

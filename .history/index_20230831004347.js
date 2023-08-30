@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 
-app.post("/register",veriftToken, async (req, resp) => {
+app.post("/register", async (req, resp) => {
   let data = new Users(req.body);
   let result = await data.save();
   result = result.toObject();
@@ -31,7 +31,7 @@ app.post("/register",veriftToken, async (req, resp) => {
 
 
 //login api
-app.post("/login",veriftToken, async (req, resp) => {
+app.post("/login", async (req, resp) => {
   if (req.body.email && req.body.password) {
     let user = await Users.findOne(req.body).select("-password");
     if (user) {
@@ -85,7 +85,7 @@ app.delete('/delete-product/:id',async(req,resp)=>{
 })
 
 //updateapi
-app.get('/product/:id',async(req,resp)=>{
+app.get('/product/:id',veriftToken,async(req,resp)=>{
   let result = await Products.findOne({_id:req.params.id})
   if(result)
   {
@@ -96,7 +96,7 @@ app.get('/product/:id',async(req,resp)=>{
   }
 })
 
-app.put('/product-update/:id',async(req,resp)=>{
+app.put('/product-update/:id',veriftToken,async(req,resp)=>{
   let result = await Products.updateOne(
     {_id:req.params.id},
     {

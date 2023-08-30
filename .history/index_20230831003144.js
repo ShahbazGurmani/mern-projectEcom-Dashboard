@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 
-app.post("/register",veriftToken, async (req, resp) => {
+app.post("/register", async (req, resp) => {
   let data = new Users(req.body);
   let result = await data.save();
   result = result.toObject();
@@ -31,7 +31,7 @@ app.post("/register",veriftToken, async (req, resp) => {
 
 
 //login api
-app.post("/login",veriftToken, async (req, resp) => {
+app.post("/login", async (req, resp) => {
   if (req.body.email && req.body.password) {
     let user = await Users.findOne(req.body).select("-password");
     if (user) {
@@ -54,7 +54,7 @@ app.post("/login",veriftToken, async (req, resp) => {
 
 
 //product table api craetion:
-app.post('/add-product',veriftToken,async(req,resp)=>{
+app.post('/add-product',async(req,resp)=>{
     let product = new Products(req.body);
     let result = await product.save();
     resp.send(result);
@@ -124,19 +124,10 @@ function veriftToken(req,resp,next)
   if(token)
   {
     token = token.split(" ")[1];
-    
-    Jwt.verify(token,jwtKey,(err,valid)=>{
-      if(err)
-      {
-        resp.status(401).send({result:"Please add Valid token"})
-      }else
-      {
-        next();
-      }
-    });
-  }else
-  {
-    resp.status(403).send({result:"Please add Token with header"});
+    console.warn("middle ware active",token);
   }
+  console.warn("middle ware active",token);
+  
+  next();
 }
 app.listen(4500);
